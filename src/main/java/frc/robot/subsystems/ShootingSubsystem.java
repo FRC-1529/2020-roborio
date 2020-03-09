@@ -28,11 +28,11 @@ public class ShootingSubsystem extends SubsystemBase {
 
 
   //Operating Variables
-  private double intake_power = .5;
+  private double intake_power = -.5;
   private double conveyor_power = .5;
 
   private int flywheel_power = 0;
-  private double[] flywheel_power_steps = { 0, .7, .75, .8, .85, .9, .95, 1 }; //The possible power states of the flywheels
+  private double[] flywheel_power_steps = { 0, -.7, -.75, -.8, -.85, -.9, -.95, -1 }; //The possible power states of the flywheels
 
   //Subsystem Constructor
   public ShootingSubsystem() {}

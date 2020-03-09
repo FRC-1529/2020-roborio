@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 import java.util.function.DoubleSupplier;
 
 import frc.robot.subsystems.DriveSubsystem;
@@ -28,6 +27,10 @@ import frc.robot.commands.IntakeOnCommand;
 import frc.robot.commands.IntakeOffCommand;
 import frc.robot.commands.ConveyorOnCommand;
 import frc.robot.commands.ConveyorOffCommand;
+
+import frc.robot.subsystems.ManipulatorSubsystem;
+import frc.robot.commands.ManipulatorOnCommand;
+import frc.robot.commands.ManipulatorOffCommand;
 
 import frc.robot.Constants;
 
@@ -58,13 +61,16 @@ public class RobotContainer {
   private ConveyorOnCommand conveyor_on_command = new ConveyorOnCommand(shooting_subsystem);
   private ConveyorOffCommand conveyor_off_command = new ConveyorOffCommand(shooting_subsystem);
   
+  private final ManipulatorSubsystem manipulator_subsystem = new ManipulatorSubsystem();
+  private ManipulatorOnCommand manipulator_on_command = new ManipulatorOnCommand(manipulator_subsystem);
+  private ManipulatorOffCommand manipulator_off_command = new ManipulatorOffCommand(manipulator_subsystem);
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     //Lets get this bad boy driving
-    DoubleSupplier ds_leftaxis = () -> drive_controller.getRawAxis(XboxController.Axis.kLeftY.value);
-    DoubleSupplier ds_rightaxis = () -> drive_controller.getRawAxis(XboxController.Axis.kRightY.value);
+    DoubleSupplier ds_leftaxis = () -> drive_controller.getRawAxis(XboxController.Axis.kRightY.value);
+    DoubleSupplier ds_rightaxis = () -> drive_controller.getRawAxis(XboxController.Axis.kLeftY.value);
     default_drive_command = new DefaultDriveCommand(drive_subsystem, ds_leftaxis, ds_rightaxis);
     drive_subsystem.setDefaultCommand(default_drive_command);
     // Configure the button bindings
@@ -93,6 +99,8 @@ public class RobotContainer {
     btn_intake.whenPressed(intake_on_command).whenReleased(intake_off_command);
     JoystickButton btn_conveyor = new JoystickButton(ops_controller, XboxController.Button.kBumperRight.value);
     btn_conveyor.whenPressed(conveyor_on_command).whenReleased(conveyor_off_command);
+    JoystickButton btn_manipulator = new JoystickButton(ops_controller, XboxController.Button.kY.value);
+    btn_manipulator.whenPressed(manipulator_on_command).whenReleased(manipulator_off_command);
   }
 
 

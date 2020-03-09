@@ -42,7 +42,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   //Driving Commands
   public void drive(double left_power_target, double right_power_target) {
-    left_motors.set(ControlMode.PercentOutput, left_power_target*direction);
+    left_motors.set(ControlMode.PercentOutput, left_power_target*direction*-1);
     right_motors.set(ControlMode.PercentOutput, right_power_target*direction);
   }
 
