@@ -32,10 +32,6 @@ public class DriveSubsystem extends SubsystemBase {
   //Operational Variables
   private int direction = 1; // 1 = forward, -1 = backwards;
 
-  //Shifter variables
-  public boolean gear_shift = false; //Is shifted into 2nd gear
-  public final Solenoid shifter = new Solenoid(1, 0);
-
 
   //Subsystem Constructor
   public DriveSubsystem() {
