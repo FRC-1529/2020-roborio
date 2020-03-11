@@ -23,7 +23,7 @@ public class ManipulatorSubsystem extends SubsystemBase {
 
   //Intake Commands
   public void startManipulator() {
-    manipulator_motor.set(ControlMode.PercentOutput, .5);
+    manipulator_motor.set(ControlMode.PercentOutput, .15);
   }
   public void stopManipulator() {
     manipulator_motor.set(ControlMode.PercentOutput, 0);
